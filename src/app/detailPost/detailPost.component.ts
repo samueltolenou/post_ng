@@ -13,13 +13,13 @@ export class DetailPostComponent implements OnInit {
 postReponse?: Reponse<Post>;
 erreur?: string;
 post =  {} as Post;
-newNbVote: any | number = 0 ; 
+newNbVote: any | number = 0 ;
   constructor(private postService: PostService, private activatedRoute: ActivatedRoute) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit(){
 
-    let id: any;
+    let id:  any;
     id = this.activatedRoute.snapshot.paramMap.get('id');
     this.postService.getOnePost(+id).subscribe(
       (data: Reponse<Post>) => {this.postReponse = data; },
@@ -34,7 +34,7 @@ newNbVote: any | number = 0 ;
 
   this.postService.sendLike(+idPost).subscribe(
     (data?: Reponse<number>) => { this.newNbVote = data?.data; 
-      
+
       },
     (error) => {
       this.erreur = 'erreur' ;
