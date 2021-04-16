@@ -1,0 +1,70 @@
+
+
+<div class="col-sm-5">
+  <h2>Créer un compte</h2>
+  
+  <form  [formGroup] = "userForm" (ngSubmit)="createUser()">
+    <div class="form-group">
+      <label>Identité *</label>
+      <input type="text" class="form-control" formControlName="identite"
+      [ngClass]="{'is-invalid':getF().identite.dirty && getF().identite.invalid }"/>
+
+      <div class="invalid-feedback" *ngIf="getF().identite.errors?.required"> champ obligatoire</div>
+      <div class="invalid-feedback" *ngIf="getF().identite.errors?.maxlength"> la longueur doit 
+        être inférieur à 30 caractère
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Nom d'utilisateur *</label>
+      <input type="text" class="form-control "   formControlName="login" required
+      [ngClass]="{'is-invalid':getF().login.dirty && getF().login.invalid }"/>
+      <div class="invalid-feedback" *ngIf="getF().login.errors?.required"> champ obligatoire</div>
+      <div class="invalid-feedback" *ngIf="getF().login.errors?.maxlength"> la longueur doit 
+        être inférieur à 30 caractère
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Mot de passe *</label>
+      <input type="password" class="form-control " formControlName="password" 
+           [ngClass]="{'is-invalid':getF().password.dirty && getF().password.invalid }"/>
+      
+           
+      <div class="invalid-feedback" *ngIf="getF().password.errors?.required"> champ obligatoire</div>
+      <div class="invalid-feedback" *ngIf="getF().password.errors?.maxlength"> la longueur doit 
+        être inférieur à 30 caractère
+      </div>
+    
+    </div>
+
+    <div class="form-group">
+      <label>Confirmer *</label>
+      <input type="password" class="form-control"  formControlName="confirmation"
+      [ngClass]="{'is-invalid':getF().confirmation.dirty && getF().confirmation.invalid}"  />
+
+      <div class="invalid-feedback" *ngIf="getF().confirmation.errors?.required"> champ obligatoire</div>
+      <div class="invalid-feedback" *ngIf="getF().confirmation.errors?.maxlength"> la longueur doit 
+        être inférieur à 30 caractère
+      </div>
+      <div class="invalid-feedback" *ngIf="getF().confirmation.errors?.mustMatch"> les mots de passe 
+        ne correspondent pas 
+
+      </div>
+    </div>
+
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid"> Soumettre</button>
+  
+  </form>
+</div>
+
+<!--
+<button class="btn btn-default" (click)="voirUserform()">voir le formaulaire</button>
+<div *ngFor="let u of  users">
+  <p >{{u.idUser}} -- {{u.identite}} -- {{u.login}}</p>
+  
+</div>
+-->
+

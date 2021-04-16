@@ -1,0 +1,17 @@
+
+<div class="">
+  
+ <div>
+ 
+   <div *ngFor="let p of posts$ | async">
+     <h3> <a [routerLink]="['/post',p.id]">
+       {{p.titre}}</a></h3>
+    
+
+     <p>{{p.body}}</p>
+     <p><i>auteur : </i> {{p.auteur?.identite}} | nombre de vote : {{p.nombreVote}}</p>
+   </div>
+   
+ </div>
+
+</div>

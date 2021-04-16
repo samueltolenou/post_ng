@@ -1,0 +1,33 @@
+
+
+<div class="col-lg-7">
+  <h2>Ajouter un post</h2>
+  
+  <form  [formGroup] = "postForm" (ngSubmit)="onPost()">
+    <div class="form-group">
+      <label>Titre *</label>
+      <input type="text" class="form-control" formControlName="titre"
+      [ngClass]="{'is-invalid':getF().titre.dirty && getF().titre.invalid }"/>
+
+      <div class="invalid-feedback" *ngIf="getF().titre.errors?.required"> champ obligatoire</div>
+      <div class="invalid-feedback" *ngIf="getF().titre.errors?.maxlength"> la longueur doit 
+        être inférieur à 255 caractère
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Body *</label>
+      <textarea  class="form-control" formControlName="body"
+      [ngClass]="{'is-invalid':getF().body.dirty && getF().body.invalid }"></textarea>
+
+      <div class="invalid-feedback" *ngIf="getF().body.errors?.required"> champ obligatoire</div>
+      
+    </div>
+  
+
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="postForm.invalid"> Soumettre</button>
+  
+  </form>
+</div>
