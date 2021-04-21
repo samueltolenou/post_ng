@@ -1,8 +1,10 @@
+import { Post } from './../../models/Post';
 import { Reponse } from './../../models/Reponse';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/services/Post.service';
-import { Post } from 'src/models/Post';
+
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/models/User';
 
 @Component({
   selector: 'app-detailPost',
@@ -10,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detailPost.component.css']
 })
 export class DetailPostComponent implements OnInit {
-postReponse?: Reponse<Post>;
+postReponse = {} as Reponse<Post>;
 erreur?: string;
 post =  {} as Post;
 newNbVote: any | number = 0 ;
@@ -19,28 +21,49 @@ newNbVote: any | number = 0 ;
   // tslint:disable-next-line: typedef
   ngOnInit(){
 
-    let id:  any;
+    
+    let id: any;
     id = this.activatedRoute.snapshot.paramMap.get('id');
     this.postService.getOnePost(+id).subscribe(
-      (data: Reponse<Post>) => {this.postReponse = data; },
+      (data: Reponse<Post>) => {
+        this.postReponse = data; 
+        
+      },
       (error) => {
         this.erreur = 'erreur de chargement' ;
         console.log(error); }
     );
   }
 
-  onLike(idPost: any){
-
-
-  this.postService.sendLike(+idPost).subscribe(
-    (data?: Reponse<number>) => { this.newNbVote = data?.data; 
-
-      },
-    (error) => {
-      this.erreur = 'erreur' ;
-      console.log(error); }
-   );
+  onLike(postLiker: Post){
+    
+  let v = confirm('vraiment liker ?');
+  if(v== true){
+    this.postService.sendLike(+postLiker.id).subscribe(
+      (data: Reponse<number>) => {
+          postLiker.nombreVote = data.data; 
+        },
+      (error) => {
+        this.erreur = 'erreur' ;
+        console.log(error); }
+     );
+    }
   }
+
+  
 
 
 }
+
+
+/*this.post = {
+      id : 0,
+      titre: '',
+      body: '',
+      nombreVote: 0 ,
+      auteur: {} as User,
+      img: ''
+
+    } ;
+
+    */

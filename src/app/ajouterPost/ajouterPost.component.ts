@@ -39,15 +39,20 @@ export class AjouterPostComponent implements OnInit {
   }
 
   onPost(){
+ 
+    
 
+
+    
     let done: boolean = false;
 
-    const formValue = this.postForm.value;
+    //const formValue = this.postForm.value;
 
-    const p: Post = <Post> {};
-
+    const p: Post = this.postForm.value;
+/*
     p.titre = formValue.titre;
     p.body = formValue.body;
+    */
     p.auteur = this.userService.userActif;
 
     this.postService.sendPost(p).subscribe(

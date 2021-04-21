@@ -3,16 +3,19 @@
     <p class="alert-danger">{{erreur}}</p>
     <p class="alert-danger">{{postReponse?.message}}</p>
     <div >
-      <h3>{{postReponse?.data?.titre}}</h3>
+      <h3>{{postReponse.data.titre}}</h3>
  
-      <p>{{postReponse?.data?.body}}</p>
+      <p>{{postReponse.data.body}}</p>
       <p><i>auteur : </i> {{postReponse?.data?.auteur?.identite}} | nombre de vote : {{postReponse?.data?.nombreVote}}
-        <span><button class="btn btn-primary" (click)="onLike(postReponse?.data?.id)">like</button></span>
+        <br/> <span><button class="btn btn-sm btn-outline-primary" (click)="onLike(postReponse.data)">like</button></span>
       </p>
       <a routerLink="/liste_des_post">Retour à la liste</a>
     </div>
-    <strong> {{newNbVote}}</strong>
-    
+
+
   </div>
  
  </div>
+
+
+ 
